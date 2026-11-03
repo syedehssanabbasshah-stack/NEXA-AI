@@ -1,0 +1,16 @@
+{
+  "name": "nexa-ai",
+  "version": "1.0.0",
+  "description": "Nexa AI desktop app: your Nexa website in its own window with PC control",
+  "main": "main.js",
+  "author": "Nexa",
+  "scripts": { "start": "electron .", "safe": "electron . --safe", "dist": "electron-builder --win --publish never" },
+  "devDependencies": { "electron": "^33.0.0", "electron-builder": "^25.0.0" },
+  "build": {
+    "appId": "com.nexa.ai",
+    "productName": "Nexa AI",
+    "files": ["main.js", "preload.js", "setup.html", "site.json"],
+    "win": { "target": "nsis", "icon": "build/icon.png" },
+    "nsis": { "oneClick": true, "perMachine": false, "deleteAppDataOnUninstall": false }
+  }
+}
