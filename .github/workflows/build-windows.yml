@@ -19,7 +19,14 @@ jobs:
       - name: Write website address
         if: ${{ github.event.inputs.site_url != '' }}
         shell: bash
-        run: echo '{ "site": "${{ github.event.inputs.site_url }}" }' > site.json
+     - name: Write website address
+  if: ${{ github.event.inputs.site_url != '' }}
+  run: |
+    cat << 'EOF' > site.json
+    {
+      "site": "${{ github.event.inputs.site_url }}"
+    }
+    EOF
       - run: npm install
       - run: npx electron-builder --win --publish never
       - uses: actions/upload-artifact@v4
