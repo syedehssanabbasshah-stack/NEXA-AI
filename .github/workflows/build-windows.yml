@@ -16,10 +16,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
-      - name: Write website address
+     - name: Write website address
         if: ${{ github.event.inputs.site_url != '' }}
         shell: bash
-        run: echo '{ "site": "${{ github.event.inputs.site_url }}" }' > site.json
+        run: |
+          echo '{"site": "${{ github.event.inputs.site_url }}"}' > site.json
       - run: npm install
       - run: npx electron-builder --win --publish never
       - uses: actions/upload-artifact@v4
